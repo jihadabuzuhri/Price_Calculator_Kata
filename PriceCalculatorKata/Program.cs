@@ -9,11 +9,10 @@ namespace PriceCalculatorKata
 
             Product Book = new Product("The Little Prince", 12345, 20.25);
 
-            Product BookWithTax = Calculation.AddTax(Book,20);
-            Console.WriteLine($"Product price reported as {Book.Price} before tax and {BookWithTax.Price}  after 20 % tax");
+            Product BookWithTaxAndDiscount = Calculation.AddTaxWithDiscount(Book,20,15);
+            Console.WriteLine("Sample product: Book with name = “The Little Prince”, UPC=12345, price=$20.25.");
+            Console.WriteLine($"Tax amount = ${Calculation.TaxAmount} Discount amount = ${Calculation.DiscountAmount} Price before = ${Book.Price}, price after = ${BookWithTaxAndDiscount.Price} ");
 
-            BookWithTax = Calculation.AddTax(Book, 21);
-            Console.WriteLine($"Product price reported as {Book.Price} before tax and {BookWithTax.Price}  after 21 % tax");
 
         }
     }
