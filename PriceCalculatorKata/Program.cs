@@ -10,7 +10,6 @@ namespace PriceCalculatorKata
             Product Book = new Product("The Little Prince", 12345, 20.25);
             Console.WriteLine("Sample product: Book with name = “The Little Prince”, UPC=12345, price=$20.25.\n");
 
-            Console.WriteLine("_____________________________________________________________________");
 
             Dictionary<string, double> AdditionalCosts = new Dictionary<string, double>();
 
@@ -25,35 +24,15 @@ namespace PriceCalculatorKata
             IsAbsoluteValue.Add("administrative", false);
 
 
+            Console.WriteLine("_____________________________________________________________________");
 
-            Console.WriteLine("\nTax = 21%, discount = 15%, UPC discount = 7% for UPC=12345 Packaging cost = 1% of price Transport cost = $2.2\n");
-            Product Book1WithTaxAndDiscount = Calculation.CalculateFinalPrice(Book,21,15,false,7, false, 12345, AdditionalCosts, IsAbsoluteValue);
-
+            Console.WriteLine("\nTax = 21%, discount = 15%, UPC discount = 7% for UPC=12345, additive discounts Packaging cost = 1% of price Transport cost = $2.2\n");
+            Product Book1WithTaxAndAdditiveDiscount = Calculation.CalculateAdditiveFinalPrice(Book,21,15,false,7, false, 12345, AdditionalCosts, IsAbsoluteValue);
 
             Console.WriteLine("_____________________________________________________________________");
 
-            Dictionary<string, double> AdditionalCosts_2 = new Dictionary<string, double>();
-
-            AdditionalCosts_2.Add("packaging", 0);
-            AdditionalCosts_2.Add("transport", 0);
-            AdditionalCosts_2.Add("administrative", 0);
-
-            Dictionary<string, bool> IsAbsoluteValue_2 = new Dictionary<string, bool>();
-
-            IsAbsoluteValue_2.Add("packaging", false);
-            IsAbsoluteValue_2.Add("transport", false);
-            IsAbsoluteValue_2.Add("administrative", false);
-
-
-
-            Console.WriteLine("\nTax 21%, no discounts and no additional costs.\n");
-            Product Book1WithTaxAndDiscount_2 = Calculation.CalculateFinalPrice(Book, 21, 0, false, 0, false, 12345, AdditionalCosts_2, IsAbsoluteValue_2);
-
-
-
-
-
-
+            Console.WriteLine("\nTax = 21%, discount = 15%, UPC discount = 7% for UPC=12345, multiplicative discounts Packaging cost = 1% of price Transport cost = $2.2\n");
+            Product Book1WithTaxAndMultiplicativeDiscount = Calculation.CalculateMultiplicativeFinalPrice(Book, 21, 15, false, 7, false, 12345, AdditionalCosts, IsAbsoluteValue);
 
 
 
