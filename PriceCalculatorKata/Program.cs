@@ -13,8 +13,8 @@ namespace PriceCalculatorKata
 
             Dictionary<string, double> AdditionalCosts = new Dictionary<string, double>();
 
-            AdditionalCosts.Add("packaging", 1);
-            AdditionalCosts.Add("transport", 2.2);
+            AdditionalCosts.Add("packaging", 0);
+            AdditionalCosts.Add("transport", 0);
             AdditionalCosts.Add("administrative", 0);
 
             Dictionary<string, bool> IsAbsoluteValue = new Dictionary<string, bool>();
@@ -26,17 +26,19 @@ namespace PriceCalculatorKata
 
             Console.WriteLine("_____________________________________________________________________");
 
-            Console.WriteLine("\nTax = 21%, discount = 15%, UPC discount = 7% for UPC=12345, additive discounts Packaging cost = 1% of price Transport cost = $2.2\n");
-            Product Book1WithTaxAndAdditiveDiscount = Calculation.CalculateAdditiveFinalPrice(Book,21,15,false,7, false, 12345, AdditionalCosts, IsAbsoluteValue);
+            Console.WriteLine("\nTax = 21%, discount = 15%, UPC discount = 7% for UPC=12345, additive discounts, cap = 20%\n");
+            Calculation.CalculateAdditiveFinalPrice(Book,21,15,false,7, false, 12345, AdditionalCosts, IsAbsoluteValue,20,false);
 
             Console.WriteLine("_____________________________________________________________________");
 
-            Console.WriteLine("\nTax = 21%, discount = 15%, UPC discount = 7% for UPC=12345, multiplicative discounts Packaging cost = 1% of price Transport cost = $2.2\n");
-            Product Book1WithTaxAndMultiplicativeDiscount = Calculation.CalculateMultiplicativeFinalPrice(Book, 21, 15, false, 7, false, 12345, AdditionalCosts, IsAbsoluteValue);
 
+            Console.WriteLine("\nTax = 21%, discount = 15%, UPC discount = 7% for UPC=12345, additive discounts, cap = $4\n");
+            Calculation.CalculateAdditiveFinalPrice(Book, 21, 15, false, 7, false, 12345, AdditionalCosts, IsAbsoluteValue, 4, true);
 
-
-
+            Console.WriteLine("_____________________________________________________________________");
+            
+            Console.WriteLine("\nTax = 21%, discount = 15%, UPC discount = 7% for UPC=12345, additive discounts, cap = 30%\n");
+            Calculation.CalculateAdditiveFinalPrice(Book, 21, 15, false, 7, false, 12345, AdditionalCosts, IsAbsoluteValue, 30, false);
 
 
 

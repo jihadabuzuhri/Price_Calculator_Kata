@@ -9,12 +9,14 @@ namespace PriceCalculatorKata
         public static double TaxAmount  { get; set; }
         public static double TotalDiscountAmount { get; set; }
         public static double FinalPrice { get; set; }
-
         public static double UniversalDiscountAmount { get; set; }
         public static double UPC_DiscountAmount { get; set; }
         public static double PackagingAmount { get; set; }
         public static double TransportAmount { get; set; }
         public static double AdministrativeAmount { get; set; }
+        public static double CapAmount { get; set; }
+
+
 
 
 
@@ -24,7 +26,8 @@ namespace PriceCalculatorKata
             double UniversalDiscountRate,bool IsUniversalDiscountBeforeTax,
             double UPC_DiscountRate, bool IsUPC_DiscountBeforeTax, int UPC_ForDiscount,
             Dictionary<string, double> AdditionalCosts,
-             Dictionary<string, bool> IsAbsoluteValue)
+             Dictionary<string, bool> IsAbsoluteValue,
+             double CAP, bool IsCapAbsoluteValue)
         {
 
 
@@ -103,13 +106,22 @@ namespace PriceCalculatorKata
             }
 
 
+            FinalPrice = Math.Round(FinalPrice + TotalDiscountAmount, 2);
+
+
+
             PackagingAmount = (IsAbsoluteValue["packaging"]) ? Math.Round(AdditionalCosts["packaging"], 2) : Math.Round(product.Price * (AdditionalCosts["packaging"] / 100), 2) ;
             TransportAmount = (IsAbsoluteValue["transport"]) ? Math.Round(AdditionalCosts["transport"], 2) : Math.Round(product.Price * (AdditionalCosts["transport"] / 100), 2) ;
             AdministrativeAmount = (IsAbsoluteValue["administrative"]) ? Math.Round(AdditionalCosts["administrative"], 2) : Math.Round(product.Price * (AdditionalCosts["administrative"] / 100), 2);
 
+            
+            CapAmount = (IsCapAbsoluteValue) ? Math.Round(CAP, 2) : Math.Round(product.Price * (CAP / 100), 2);
 
+            TotalDiscountAmount = (TotalDiscountAmount > CapAmount) ? Math.Round(CapAmount, 2) : Math.Round(TotalDiscountAmount, 2);
 
-            FinalPrice = Math.Round(FinalPrice + PackagingAmount + TransportAmount + AdministrativeAmount, 2);
+            
+
+            FinalPrice = Math.Round(FinalPrice - TotalDiscountAmount + PackagingAmount + TransportAmount + AdministrativeAmount, 2);
 
             Report.PriceReport(product.Price, TaxAmount, TotalDiscountAmount, PackagingAmount, TransportAmount, AdministrativeAmount, FinalPrice);
    
@@ -126,11 +138,13 @@ namespace PriceCalculatorKata
         }
 
 
+
         public static Product CalculateMultiplicativeFinalPrice(Product product, double TaxRate,
             double UniversalDiscountRate, bool IsUniversalDiscountBeforeTax,
             double UPC_DiscountRate, bool IsUPC_DiscountBeforeTax, int UPC_ForDiscount,
             Dictionary<string, double> AdditionalCosts,
-             Dictionary<string, bool> IsAbsoluteValue)
+             Dictionary<string, bool> IsAbsoluteValue,
+             double CAP, bool IsCapAbsoluteValue)
         {
 
 
@@ -208,14 +222,20 @@ namespace PriceCalculatorKata
 
             }
 
+            FinalPrice = Math.Round(FinalPrice + TotalDiscountAmount, 2);
+
 
             PackagingAmount = (IsAbsoluteValue["packaging"]) ? Math.Round(AdditionalCosts["packaging"], 2) : Math.Round(product.Price * (AdditionalCosts["packaging"] / 100), 2);
             TransportAmount = (IsAbsoluteValue["transport"]) ? Math.Round(AdditionalCosts["transport"], 2) : Math.Round(product.Price * (AdditionalCosts["transport"] / 100), 2);
             AdministrativeAmount = (IsAbsoluteValue["administrative"]) ? Math.Round(AdditionalCosts["administrative"], 2) : Math.Round(product.Price * (AdditionalCosts["administrative"] / 100), 2);
 
+            CapAmount = (IsCapAbsoluteValue) ? Math.Round(CAP, 2) : Math.Round(product.Price * (CAP / 100), 2);
+
+            TotalDiscountAmount = (TotalDiscountAmount > CapAmount) ? Math.Round(CapAmount, 2) : Math.Round(TotalDiscountAmount, 2);
 
 
-            FinalPrice = Math.Round(FinalPrice + PackagingAmount + TransportAmount + AdministrativeAmount, 2);
+
+            FinalPrice = Math.Round(FinalPrice - TotalDiscountAmount + PackagingAmount + TransportAmount + AdministrativeAmount, 2);
 
             Report.PriceReport(product.Price, TaxAmount, TotalDiscountAmount, PackagingAmount, TransportAmount, AdministrativeAmount, FinalPrice);
 
