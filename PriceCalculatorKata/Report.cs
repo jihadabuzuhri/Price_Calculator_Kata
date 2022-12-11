@@ -6,42 +6,42 @@ namespace PriceCalculatorKata
 {
     class Report
     {
-        public static void TotalDiscountedReport(double DiscountAmount)
+        public static void TotalDiscountedReport(double DiscountAmount, string currency)
         {
 
             if (DiscountAmount == 0)
-                return;
-            
-            Console.WriteLine($"Total discounted amount : ${DiscountAmount}");
+            Console.WriteLine("No discounts");
+            else
+            Console.WriteLine($"Total discounted amount : {DiscountAmount} {currency}");
         
         }
 
 
         public static void PriceReport(double ProductPrice , double TaxAmount, double TotalDiscountAmount,
-            double PackagingAmount, double TransportAmount, double AdministrativeAmount, double FinalPrice)
+            double PackagingAmount, double TransportAmount, double AdministrativeAmount, double FinalPrice, string currency)
         {
 
-            Console.WriteLine($"Cost ${ProductPrice} ");
+            Console.WriteLine($"Cost {ProductPrice} {currency} ");
             
             if (TaxAmount != 0)
-                Console.WriteLine($"Tax Amount ${TaxAmount} ");
+                Console.WriteLine($"Tax Amount {TaxAmount} {currency} ");
             
             if (TotalDiscountAmount != 0)
-                Console.WriteLine($"Discounts ${TotalDiscountAmount} ");
+                Console.WriteLine($"Discounts {TotalDiscountAmount} {currency} ");
             
             if (PackagingAmount != 0)
-                Console.WriteLine($"Packaging Amount ${PackagingAmount} ");
+                Console.WriteLine($"Packaging Amount {PackagingAmount} {currency} ");
             
             if (TransportAmount != 0)
-                Console.WriteLine($"Transport Amount ${TransportAmount} ");
+                Console.WriteLine($"Transport Amount {TransportAmount} {currency} ");
             
             if (AdministrativeAmount != 0)
-                Console.WriteLine($"Administrative Amount ${AdministrativeAmount} ");
+                Console.WriteLine($"Administrative Amount {AdministrativeAmount} {currency} ");
             
-            Console.WriteLine($"TOTAL ${FinalPrice} ");
+            Console.WriteLine($"TOTAL {FinalPrice} {currency} ");
 
 
-
+         
         }
 
 

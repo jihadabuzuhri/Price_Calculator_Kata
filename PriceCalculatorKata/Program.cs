@@ -7,9 +7,7 @@ namespace PriceCalculatorKata
     {
         static void Main(string[] args)
         {
-            Product Book = new Product("The Little Prince", 12345, 20.25);
-            Console.WriteLine("Sample product: Book with name = “The Little Prince”, UPC=12345, price=$20.25.\n");
-
+            
 
             Dictionary<string, double> AdditionalCosts = new Dictionary<string, double>();
 
@@ -20,27 +18,21 @@ namespace PriceCalculatorKata
             Dictionary<string, bool> IsAbsoluteValue = new Dictionary<string, bool>();
 
             IsAbsoluteValue.Add("packaging", false);
-            IsAbsoluteValue.Add("transport", true);
+            IsAbsoluteValue.Add("transport", false);
             IsAbsoluteValue.Add("administrative", false);
 
 
             Console.WriteLine("_____________________________________________________________________");
-
-            Console.WriteLine("\nTax = 21%, discount = 15%, UPC discount = 7% for UPC=12345, additive discounts, cap = 20%\n");
-            Calculation.CalculateAdditiveFinalPrice(Book,21,15,false,7, false, 12345, AdditionalCosts, IsAbsoluteValue,20,false);
-
-            Console.WriteLine("_____________________________________________________________________");
-
-
-            Console.WriteLine("\nTax = 21%, discount = 15%, UPC discount = 7% for UPC=12345, additive discounts, cap = $4\n");
-            Calculation.CalculateAdditiveFinalPrice(Book, 21, 15, false, 7, false, 12345, AdditionalCosts, IsAbsoluteValue, 4, true);
+            
+            Console.WriteLine("\nSample product: Title = “The Little Prince”, UPC=12345, price=20.25 USD.Tax = 20%, no discounts\n");
+            Product Book1 = new Product("The Little Prince", 12345, 20.25);
+            Calculation.CalculateAdditiveFinalPrice(Book1,20,0,false,0, false, 12345, AdditionalCosts, IsAbsoluteValue,0,false,"USD");
 
             Console.WriteLine("_____________________________________________________________________");
             
-            Console.WriteLine("\nTax = 21%, discount = 15%, UPC discount = 7% for UPC=12345, additive discounts, cap = 30%\n");
-            Calculation.CalculateAdditiveFinalPrice(Book, 21, 15, false, 7, false, 12345, AdditionalCosts, IsAbsoluteValue, 30, false);
-
-
+            Console.WriteLine("\nSample product: Title = “The Little Prince”, UPC=12345, price=17.76 GBP.Tax = 20%, no discounts\n");
+            Product Book2 = new Product("The Little Prince", 12345, 17.76);
+            Calculation.CalculateAdditiveFinalPrice(Book2, 20, 0, false, 0, false, 12345, AdditionalCosts, IsAbsoluteValue, 0, false, "GBP");
 
             Console.ReadLine();
 

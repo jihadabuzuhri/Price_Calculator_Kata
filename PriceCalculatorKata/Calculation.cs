@@ -16,6 +16,7 @@ namespace PriceCalculatorKata
         public static double AdministrativeAmount { get; set; }
         public static double CapAmount { get; set; }
 
+        public static string Currency { get; set; }
 
 
 
@@ -27,7 +28,7 @@ namespace PriceCalculatorKata
             double UPC_DiscountRate, bool IsUPC_DiscountBeforeTax, int UPC_ForDiscount,
             Dictionary<string, double> AdditionalCosts,
              Dictionary<string, bool> IsAbsoluteValue,
-             double CAP, bool IsCapAbsoluteValue)
+             double CAP, bool IsCapAbsoluteValue, string Currency)
         {
 
 
@@ -123,10 +124,10 @@ namespace PriceCalculatorKata
 
             FinalPrice = Math.Round(FinalPrice - TotalDiscountAmount + PackagingAmount + TransportAmount + AdministrativeAmount, 2);
 
-            Report.PriceReport(product.Price, TaxAmount, TotalDiscountAmount, PackagingAmount, TransportAmount, AdministrativeAmount, FinalPrice);
+            Report.PriceReport(product.Price, TaxAmount, TotalDiscountAmount, PackagingAmount, TransportAmount, AdministrativeAmount, FinalPrice, Currency);
    
             Console.WriteLine();
-            Report.TotalDiscountedReport(TotalDiscountAmount);
+            Report.TotalDiscountedReport(TotalDiscountAmount, Currency);
 
             return new Product
             (
@@ -144,7 +145,7 @@ namespace PriceCalculatorKata
             double UPC_DiscountRate, bool IsUPC_DiscountBeforeTax, int UPC_ForDiscount,
             Dictionary<string, double> AdditionalCosts,
              Dictionary<string, bool> IsAbsoluteValue,
-             double CAP, bool IsCapAbsoluteValue)
+             double CAP, bool IsCapAbsoluteValue, string Currency)
         {
 
 
@@ -237,10 +238,10 @@ namespace PriceCalculatorKata
 
             FinalPrice = Math.Round(FinalPrice - TotalDiscountAmount + PackagingAmount + TransportAmount + AdministrativeAmount, 2);
 
-            Report.PriceReport(product.Price, TaxAmount, TotalDiscountAmount, PackagingAmount, TransportAmount, AdministrativeAmount, FinalPrice);
+            Report.PriceReport(product.Price, TaxAmount, TotalDiscountAmount, PackagingAmount, TransportAmount, AdministrativeAmount, FinalPrice,Currency);
 
             Console.WriteLine();
-            Report.TotalDiscountedReport(TotalDiscountAmount);
+            Report.TotalDiscountedReport(TotalDiscountAmount, Currency);
 
             return new Product
             (
