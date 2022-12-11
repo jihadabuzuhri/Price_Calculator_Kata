@@ -14,7 +14,7 @@ namespace PriceCalculatorKata
         {
             Name = name;
             UPC = upc;
-            Price = Math.Round(price, 2);
+            Price =Calculation.Round(price);
         }
     }
 }

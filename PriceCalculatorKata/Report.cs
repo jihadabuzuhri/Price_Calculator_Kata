@@ -12,7 +12,7 @@ namespace PriceCalculatorKata
             if (DiscountAmount == 0)
             Console.WriteLine("No discounts");
             else
-            Console.WriteLine($"Total discounted amount : {DiscountAmount} {currency}");
+            Console.WriteLine($"Total discounted amount : {Math.Round(DiscountAmount, 2)} {currency}");
         
         }
 
@@ -21,24 +21,26 @@ namespace PriceCalculatorKata
             double PackagingAmount, double TransportAmount, double AdministrativeAmount, double FinalPrice, string currency)
         {
 
-            Console.WriteLine($"Cost {ProductPrice} {currency} ");
+            
+
+            Console.WriteLine($"Cost {Math.Round(ProductPrice)} {currency} ");
             
             if (TaxAmount != 0)
-                Console.WriteLine($"Tax Amount {TaxAmount} {currency} ");
+                Console.WriteLine($"Tax Amount {Math.Round(TaxAmount,2) } {currency} ");
             
             if (TotalDiscountAmount != 0)
-                Console.WriteLine($"Discounts {TotalDiscountAmount} {currency} ");
+                Console.WriteLine($"Discounts {Math.Round(TotalDiscountAmount,2)} {currency} ");
             
             if (PackagingAmount != 0)
-                Console.WriteLine($"Packaging Amount {PackagingAmount} {currency} ");
+                Console.WriteLine($"Packaging Amount {Math.Round(PackagingAmount, 2)} {currency} ");
             
             if (TransportAmount != 0)
-                Console.WriteLine($"Transport Amount {TransportAmount} {currency} ");
+                Console.WriteLine($"Transport Amount {Math.Round(TransportAmount, 2)} {currency} ");
             
             if (AdministrativeAmount != 0)
-                Console.WriteLine($"Administrative Amount {AdministrativeAmount} {currency} ");
+                Console.WriteLine($"Administrative Amount {Math.Round(AdministrativeAmount, 2)} {currency} ");
             
-            Console.WriteLine($"TOTAL {FinalPrice} {currency} ");
+            Console.WriteLine($"TOTAL {Math.Round(FinalPrice, 2)} {currency} ");
 
 
          

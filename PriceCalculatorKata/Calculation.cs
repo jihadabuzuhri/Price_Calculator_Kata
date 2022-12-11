@@ -35,18 +35,18 @@ namespace PriceCalculatorKata
             if (IsUniversalDiscountBeforeTax&& IsUPC_DiscountBeforeTax)
             {
 
-                FinalPrice = Math.Round(product.Price, 2);
+                FinalPrice =Round(product.Price);
 
-                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ? Math.Round(product.Price * (UPC_DiscountRate / 100), 2) : 0;
-                FinalPrice = Math.Round(FinalPrice - UPC_DiscountAmount, 2);
+                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ?Round(product.Price * (UPC_DiscountRate / 100)) : 0;
+                FinalPrice =Round(FinalPrice - UPC_DiscountAmount);
 
-                UniversalDiscountAmount = Math.Round(product.Price * (UniversalDiscountRate / 100), 2);
-                FinalPrice = Math.Round(FinalPrice - UniversalDiscountAmount, 2);
+                UniversalDiscountAmount =Round(product.Price * (UniversalDiscountRate / 100));
+                FinalPrice =Round(FinalPrice - UniversalDiscountAmount);
 
 
-                TaxAmount = Math.Round(FinalPrice * (TaxRate / 100), 2);
+                TaxAmount =Round(FinalPrice * (TaxRate / 100));
 
-                FinalPrice = Math.Round(FinalPrice + TaxAmount, 2);
+                FinalPrice =Round(FinalPrice + TaxAmount);
 
 
 
@@ -55,74 +55,74 @@ namespace PriceCalculatorKata
             }
             else if (IsUniversalDiscountBeforeTax && IsUPC_DiscountBeforeTax==false)
             {
-                FinalPrice = Math.Round(product.Price, 2);
+                FinalPrice =Round(product.Price);
 
-                UniversalDiscountAmount = Math.Round(product.Price * (UniversalDiscountRate / 100), 2);
-                FinalPrice = Math.Round(FinalPrice - UniversalDiscountAmount, 2);
+                UniversalDiscountAmount =Round(product.Price * (UniversalDiscountRate / 100));
+                FinalPrice =Round(FinalPrice - UniversalDiscountAmount);
 
-                TaxAmount = Math.Round(FinalPrice * (TaxRate / 100), 2);
+                TaxAmount =Round(FinalPrice * (TaxRate / 100));
 
-                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ? Math.Round(product.Price * (UPC_DiscountRate / 100), 2) : 0;
+                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ?Round(product.Price * (UPC_DiscountRate / 100)) : 0;
 
-                FinalPrice = Math.Round(FinalPrice - UPC_DiscountAmount, 2);
+                FinalPrice =Round(FinalPrice - UPC_DiscountAmount);
 
-                FinalPrice = Math.Round(FinalPrice + TaxAmount, 2);
-                TotalDiscountAmount = Math.Round(UniversalDiscountAmount + UPC_DiscountAmount, 2);
+                FinalPrice =Round(FinalPrice + TaxAmount);
+                TotalDiscountAmount =Round(UniversalDiscountAmount + UPC_DiscountAmount);
 
             }
             else if (IsUniversalDiscountBeforeTax ==false && IsUPC_DiscountBeforeTax)
             {
-                FinalPrice = Math.Round(product.Price, 2);
+                FinalPrice =Round(product.Price);
 
-                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ? Math.Round(product.Price * (UPC_DiscountRate / 100), 2) : 0;
-                FinalPrice = Math.Round(FinalPrice - UPC_DiscountAmount, 2);
+                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ?Round(product.Price * (UPC_DiscountRate / 100)) : 0;
+                FinalPrice =Round(FinalPrice - UPC_DiscountAmount);
 
-                TaxAmount = Math.Round(FinalPrice * (TaxRate / 100), 2);
+                TaxAmount =Round(FinalPrice * (TaxRate / 100));
 
-                UniversalDiscountAmount = Math.Round(product.Price * (UniversalDiscountRate / 100), 2);
-                FinalPrice = Math.Round(FinalPrice - UniversalDiscountAmount, 2);
+                UniversalDiscountAmount =Round(product.Price * (UniversalDiscountRate / 100));
+                FinalPrice =Round(FinalPrice - UniversalDiscountAmount);
 
 
 
-                FinalPrice = Math.Round(FinalPrice + TaxAmount, 2);
-                TotalDiscountAmount = Math.Round(UniversalDiscountAmount + UPC_DiscountAmount, 2);
+                FinalPrice =Round(FinalPrice + TaxAmount);
+                TotalDiscountAmount =Round(UniversalDiscountAmount + UPC_DiscountAmount);
 
             }
             else if (IsUniversalDiscountBeforeTax ==false && IsUPC_DiscountBeforeTax==false)
             {
-                FinalPrice = Math.Round(product.Price, 2);
+                FinalPrice =Round(product.Price);
 
-                TaxAmount = Math.Round(FinalPrice * (TaxRate / 100), 2);
+                TaxAmount =Round(FinalPrice * (TaxRate / 100));
 
-                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ? Math.Round(product.Price * (UPC_DiscountRate / 100), 2) : 0;
-                FinalPrice = Math.Round(FinalPrice - UPC_DiscountAmount, 2);
+                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ?Round(product.Price * (UPC_DiscountRate / 100)) : 0;
+                FinalPrice =Round(FinalPrice - UPC_DiscountAmount);
 
-                UniversalDiscountAmount = Math.Round(product.Price * (UniversalDiscountRate / 100), 2);
-                FinalPrice = Math.Round(FinalPrice - UniversalDiscountAmount, 2);
+                UniversalDiscountAmount =Round(product.Price * (UniversalDiscountRate / 100));
+                FinalPrice =Round(FinalPrice - UniversalDiscountAmount);
 
-                FinalPrice = Math.Round(FinalPrice + TaxAmount, 2);
-                TotalDiscountAmount = Math.Round(UniversalDiscountAmount + UPC_DiscountAmount, 2);
+                FinalPrice =Round(FinalPrice + TaxAmount);
+                TotalDiscountAmount =Round(UniversalDiscountAmount + UPC_DiscountAmount);
 
 
             }
 
 
-            FinalPrice = Math.Round(FinalPrice + TotalDiscountAmount, 2);
+            FinalPrice =Round(FinalPrice + TotalDiscountAmount);
 
 
 
-            PackagingAmount = (IsAbsoluteValue["packaging"]) ? Math.Round(AdditionalCosts["packaging"], 2) : Math.Round(product.Price * (AdditionalCosts["packaging"] / 100), 2) ;
-            TransportAmount = (IsAbsoluteValue["transport"]) ? Math.Round(AdditionalCosts["transport"], 2) : Math.Round(product.Price * (AdditionalCosts["transport"] / 100), 2) ;
-            AdministrativeAmount = (IsAbsoluteValue["administrative"]) ? Math.Round(AdditionalCosts["administrative"], 2) : Math.Round(product.Price * (AdditionalCosts["administrative"] / 100), 2);
-
-            
-            CapAmount = (IsCapAbsoluteValue) ? Math.Round(CAP, 2) : Math.Round(product.Price * (CAP / 100), 2);
-
-            TotalDiscountAmount = (TotalDiscountAmount > CapAmount) ? Math.Round(CapAmount, 2) : Math.Round(TotalDiscountAmount, 2);
+            PackagingAmount = (IsAbsoluteValue["packaging"]) ?Round(AdditionalCosts["packaging"]) :Round(product.Price * (AdditionalCosts["packaging"] / 100)) ;
+            TransportAmount = (IsAbsoluteValue["transport"]) ?Round(AdditionalCosts["transport"]) :Round(product.Price * (AdditionalCosts["transport"] / 100)) ;
+            AdministrativeAmount = (IsAbsoluteValue["administrative"]) ?Round(AdditionalCosts["administrative"]) :Round(product.Price * (AdditionalCosts["administrative"] / 100));
 
             
+            CapAmount = (IsCapAbsoluteValue) ?Round(CAP) :Round(product.Price * (CAP / 100));
 
-            FinalPrice = Math.Round(FinalPrice - TotalDiscountAmount + PackagingAmount + TransportAmount + AdministrativeAmount, 2);
+            TotalDiscountAmount = (TotalDiscountAmount > CapAmount) ?Round(CapAmount) :Round(TotalDiscountAmount);
+
+            
+
+            FinalPrice =Round(FinalPrice - TotalDiscountAmount + PackagingAmount + TransportAmount + AdministrativeAmount);
 
             Report.PriceReport(product.Price, TaxAmount, TotalDiscountAmount, PackagingAmount, TransportAmount, AdministrativeAmount, FinalPrice, Currency);
    
@@ -152,18 +152,18 @@ namespace PriceCalculatorKata
             if (IsUniversalDiscountBeforeTax && IsUPC_DiscountBeforeTax)
             {
 
-                FinalPrice = Math.Round(product.Price, 2);
+                FinalPrice =Round(product.Price);
 
-                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ? Math.Round(FinalPrice * (UPC_DiscountRate / 100), 2) : 0;
-                FinalPrice = Math.Round(FinalPrice - UPC_DiscountAmount, 2);
+                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ?Round(FinalPrice * (UPC_DiscountRate / 100)) : 0;
+                FinalPrice =Round(FinalPrice - UPC_DiscountAmount);
 
-                UniversalDiscountAmount = Math.Round(FinalPrice * (UniversalDiscountRate / 100), 2);
-                FinalPrice = Math.Round(FinalPrice - UniversalDiscountAmount, 2);
+                UniversalDiscountAmount =Round(FinalPrice * (UniversalDiscountRate / 100));
+                FinalPrice =Round(FinalPrice - UniversalDiscountAmount);
 
 
-                TaxAmount = Math.Round(FinalPrice * (TaxRate / 100), 2);
+                TaxAmount =Round(FinalPrice * (TaxRate / 100));
 
-                FinalPrice = Math.Round(FinalPrice + TaxAmount, 2);
+                FinalPrice = Round(FinalPrice + TaxAmount);
 
 
 
@@ -172,71 +172,71 @@ namespace PriceCalculatorKata
             }
             else if (IsUniversalDiscountBeforeTax && IsUPC_DiscountBeforeTax == false)
             {
-                FinalPrice = Math.Round(product.Price, 2);
+                FinalPrice =Round(product.Price);
 
-                UniversalDiscountAmount = Math.Round(FinalPrice * (UniversalDiscountRate / 100), 2);
-                FinalPrice = Math.Round(FinalPrice - UniversalDiscountAmount, 2);
+                UniversalDiscountAmount =Round(FinalPrice * (UniversalDiscountRate / 100));
+                FinalPrice =Round(FinalPrice - UniversalDiscountAmount);
 
-                TaxAmount = Math.Round(FinalPrice * (TaxRate / 100), 2);
+                TaxAmount =Round(FinalPrice * (TaxRate / 100));
 
-                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ? Math.Round(FinalPrice * (UPC_DiscountRate / 100), 2) : 0;
+                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ?Round(FinalPrice * (UPC_DiscountRate / 100)) : 0;
 
-                FinalPrice = Math.Round(FinalPrice - UPC_DiscountAmount, 2);
+                FinalPrice =Round(FinalPrice - UPC_DiscountAmount);
 
-                FinalPrice = Math.Round(FinalPrice + TaxAmount, 2);
-                TotalDiscountAmount = Math.Round(UniversalDiscountAmount + UPC_DiscountAmount, 2);
+                FinalPrice =Round(FinalPrice + TaxAmount);
+                TotalDiscountAmount =Round(UniversalDiscountAmount + UPC_DiscountAmount);
 
             }
             else if (IsUniversalDiscountBeforeTax == false && IsUPC_DiscountBeforeTax)
             {
-                FinalPrice = Math.Round(product.Price, 2);
+                FinalPrice =Round(product.Price);
 
-                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ? Math.Round(FinalPrice * (UPC_DiscountRate / 100), 2) : 0;
-                FinalPrice = Math.Round(FinalPrice - UPC_DiscountAmount, 2);
+                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ?Round(FinalPrice * (UPC_DiscountRate / 100)) : 0;
+                FinalPrice =Round(FinalPrice - UPC_DiscountAmount);
 
-                TaxAmount = Math.Round(FinalPrice * (TaxRate / 100), 2);
+                TaxAmount =Round(FinalPrice * (TaxRate / 100));
 
-                UniversalDiscountAmount = Math.Round(FinalPrice * (UniversalDiscountRate / 100), 2);
-                FinalPrice = Math.Round(FinalPrice - UniversalDiscountAmount, 2);
+                UniversalDiscountAmount =Round(FinalPrice * (UniversalDiscountRate / 100));
+                FinalPrice =Round(FinalPrice - UniversalDiscountAmount);
 
 
 
-                FinalPrice = Math.Round(FinalPrice + TaxAmount, 2);
-                TotalDiscountAmount = Math.Round(UniversalDiscountAmount + UPC_DiscountAmount, 2);
+                FinalPrice =Round(FinalPrice + TaxAmount);
+                TotalDiscountAmount =Round(UniversalDiscountAmount + UPC_DiscountAmount);
 
             }
             else if (IsUniversalDiscountBeforeTax == false && IsUPC_DiscountBeforeTax == false)
             {
-                FinalPrice = Math.Round(product.Price, 2);
+                FinalPrice =Round(product.Price);
 
-                TaxAmount = Math.Round(FinalPrice * (TaxRate / 100), 2);
+                TaxAmount =Round(FinalPrice * (TaxRate / 100));
 
-                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ? Math.Round(FinalPrice * (UPC_DiscountRate / 100), 2) : 0;
-                FinalPrice = Math.Round(FinalPrice - UPC_DiscountAmount, 2);
+                UPC_DiscountAmount = (UPC_ForDiscount == product.UPC) ?Round(FinalPrice * (UPC_DiscountRate / 100)) : 0;
+                FinalPrice =Round(FinalPrice - UPC_DiscountAmount);
 
-                UniversalDiscountAmount = Math.Round(FinalPrice * (UniversalDiscountRate / 100), 2);
-                FinalPrice = Math.Round(FinalPrice - UniversalDiscountAmount, 2);
+                UniversalDiscountAmount =Round(FinalPrice * (UniversalDiscountRate / 100));
+                FinalPrice =Round(FinalPrice - UniversalDiscountAmount);
 
-                FinalPrice = Math.Round(FinalPrice + TaxAmount, 2);
-                TotalDiscountAmount = Math.Round(UniversalDiscountAmount + UPC_DiscountAmount, 2);
+                FinalPrice =Round(FinalPrice + TaxAmount);
+                TotalDiscountAmount =Round(UniversalDiscountAmount + UPC_DiscountAmount);
 
 
             }
 
-            FinalPrice = Math.Round(FinalPrice + TotalDiscountAmount, 2);
+            FinalPrice = Round(FinalPrice + TotalDiscountAmount);
 
 
-            PackagingAmount = (IsAbsoluteValue["packaging"]) ? Math.Round(AdditionalCosts["packaging"], 2) : Math.Round(product.Price * (AdditionalCosts["packaging"] / 100), 2);
-            TransportAmount = (IsAbsoluteValue["transport"]) ? Math.Round(AdditionalCosts["transport"], 2) : Math.Round(product.Price * (AdditionalCosts["transport"] / 100), 2);
-            AdministrativeAmount = (IsAbsoluteValue["administrative"]) ? Math.Round(AdditionalCosts["administrative"], 2) : Math.Round(product.Price * (AdditionalCosts["administrative"] / 100), 2);
+            PackagingAmount = (IsAbsoluteValue["packaging"]) ? Round(AdditionalCosts["packaging"]) : Round(product.Price * (AdditionalCosts["packaging"] / 100));
+            TransportAmount = (IsAbsoluteValue["transport"]) ? Round(AdditionalCosts["transport"]) : Round(product.Price * (AdditionalCosts["transport"] / 100));
+            AdministrativeAmount = (IsAbsoluteValue["administrative"]) ? Round(AdditionalCosts["administrative"]) : Round(product.Price * (AdditionalCosts["administrative"] / 100));
 
-            CapAmount = (IsCapAbsoluteValue) ? Math.Round(CAP, 2) : Math.Round(product.Price * (CAP / 100), 2);
+            CapAmount = (IsCapAbsoluteValue) ? Round(CAP) : Round(product.Price * (CAP / 100));
 
-            TotalDiscountAmount = (TotalDiscountAmount > CapAmount) ? Math.Round(CapAmount, 2) : Math.Round(TotalDiscountAmount, 2);
+            TotalDiscountAmount = (TotalDiscountAmount > CapAmount) ? Round(CapAmount) : Round(TotalDiscountAmount);
 
 
 
-            FinalPrice = Math.Round(FinalPrice - TotalDiscountAmount + PackagingAmount + TransportAmount + AdministrativeAmount, 2);
+            FinalPrice = Round(FinalPrice - TotalDiscountAmount + PackagingAmount + TransportAmount + AdministrativeAmount);
 
             Report.PriceReport(product.Price, TaxAmount, TotalDiscountAmount, PackagingAmount, TransportAmount, AdministrativeAmount, FinalPrice,Currency);
 
@@ -250,6 +250,11 @@ namespace PriceCalculatorKata
                 FinalPrice
             );
 
+        }
+
+        public static double Round(double number)
+        {
+            return Math.Round(number, 4);
         }
 
 
